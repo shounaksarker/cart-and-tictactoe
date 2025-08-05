@@ -33,3 +33,50 @@ export interface LeaderboardEntry {
   draws: number;
   lastPlayed: string;
 }
+
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  stock: number;
+  imageUrl: string;
+  tags: string[];
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ProductFormData {
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  stock: number;
+  imageUrl: string;
+  tags: string[];
+  isActive: boolean;
+}
+
+export interface ProductFilters {
+  search: string;
+  category: string;
+  minPrice?: number;
+  maxPrice?: number;
+  isActive?: boolean;
+}
+
+export interface ProductState {
+  products: Product[];
+  loading: boolean;
+  error: string | null;
+  filters: ProductFilters;
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+  categories: string[];
+}

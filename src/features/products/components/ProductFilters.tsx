@@ -94,7 +94,7 @@ export function ProductFilters({
             isOpen ? 'right-1 translate-x-0 lg:translate-x-0' : 'translate-x-full lg:translate-x-0'
           } lg:block`}
         >
-          <div className="h-full overflow-y-auto custom-scrollbar">
+          <div className="h-full overflow-y-auto custom-scrollbar rounded-3xl">
             <div className="h-full bg-gradient-to-br from-white via-purple-50/30 to-blue-50/30 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8">
               {/* Header */}
               <div className="flex items-center justify-between mb-8">
@@ -127,7 +127,7 @@ export function ProductFilters({
                   
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="lg:hidden p-2 hover:bg-gray-100 rounded-xl transition-colors"
+                    className="lg:hidden p-2 hover:bg-gray-400 rounded-xl transition-colors"
                   >
                     <X size={18} />
                   </button>
@@ -150,7 +150,7 @@ export function ProductFilters({
                   <select
                     value={filters.category}
                     onChange={(e) => onFiltersChange({ category: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/80 backdrop-blur border border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 font-medium"
+                    className="text-gray-500 w-full px-4 py-3 bg-white/80 backdrop-blur border border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 font-medium"
                   >
                     <option value="">🌟 All Categories</option>
                     {categories.map((category) => (

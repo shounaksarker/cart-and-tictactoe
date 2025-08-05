@@ -36,7 +36,15 @@ const gameSlice = createSlice({
         score: 0,
         symbol: 'O',
       };
+      // Reset all game state for new players
+      state.board = Array(9).fill(null);
+      state.currentPlayer = 'X';
+      state.currentRound = 1;
+      state.roundWins = { X: 0, O: 0 };
       state.matchStatus = 'playing';
+      state.roundStatus = 'playing';
+      state.winner = null;
+      state.finalWinner = null;
     },
     
     makeMove: (state, action: PayloadAction<number>) => {
@@ -102,6 +110,27 @@ const gameSlice = createSlice({
         matchStatus: 'playing',
       };
     },
+    
+    startNewGame: (state, action: PayloadAction<{ playerX: string; playerO: string }>) => {
+      return {
+        ...initialState,
+        players: {
+          X: {
+            id: crypto.randomUUID(),
+            name: action.payload.playerX,
+            score: 0,
+            symbol: 'X',
+          },
+          O: {
+            id: crypto.randomUUID(),
+            name: action.payload.playerO,
+            score: 0,
+            symbol: 'O',
+          },
+        },
+        matchStatus: 'playing',
+      };
+    },
   },
 });
 
@@ -134,6 +163,7 @@ export const {
   resetCurrentRound,
   resetMatch,
   startNewMatch,
+  startNewGame,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

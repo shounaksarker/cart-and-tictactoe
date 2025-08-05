@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAppDispatch } from '@/store/hooks';
-import { setPlayers } from '@/store/slices/gameSlice';
+import { startNewGame } from '@/store/slices/gameSlice';
 import { useRouter } from 'next/navigation';
 
 export function PlayerSetup() {
@@ -37,7 +37,7 @@ export function PlayerSetup() {
     e.preventDefault();
     
     if (validateForm()) {
-      dispatch(setPlayers({ playerX: playerX.trim(), playerO: playerO.trim() }));
+      dispatch(startNewGame({ playerX: playerX.trim(), playerO: playerO.trim() }));
       router.push('/game');
     }
   };
@@ -68,7 +68,7 @@ export function PlayerSetup() {
             transition={{ delay: 0.1 }}
           >
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Player X Name
+              Name of Player &quot;X&quot;
             </label>
             <input
               type="text"
@@ -77,7 +77,7 @@ export function PlayerSetup() {
                 setPlayerX(e.target.value);
                 if (errors.playerX) validateForm();
               }}
-              className={`w-full px-4 py-3 rounded-lg border ${
+              className={`w-full px-4 py-3 rounded-lg border text-gray-500 ${
                 errors.playerX ? 'border-red-500' : 'border-gray-300'
               } focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all`}
               placeholder="Enter name for Player X"
@@ -99,7 +99,7 @@ export function PlayerSetup() {
             transition={{ delay: 0.2 }}
           >
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Player O Name
+            Name of Player &quot;O&quot;
             </label>
             <input
               type="text"
@@ -108,7 +108,7 @@ export function PlayerSetup() {
                 setPlayerO(e.target.value);
                 if (errors.playerO) validateForm();
               }}
-              className={`w-full px-4 py-3 rounded-lg border ${
+              className={`w-full px-4 py-3 rounded-lg border text-gray-500 ${
                 errors.playerO ? 'border-red-500' : 'border-gray-300'
               } focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all`}
               placeholder="Enter name for Player O"
@@ -129,7 +129,7 @@ export function PlayerSetup() {
             disabled={!isFormValid}
             whileHover={isFormValid ? { scale: 1.02 } : {}}
             whileTap={isFormValid ? { scale: 0.98 } : {}}
-            className={`w-full py-3 px-4 rounded-lg font-medium transition-all ${
+            className={`w-full py-3 px-4 rounded-lg font-medium transition-all cursor-pointer ${
               isFormValid
                 ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:shadow-lg'
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'
@@ -146,7 +146,7 @@ export function PlayerSetup() {
           className="mt-6 text-center text-sm text-gray-600"
         >
           <p>Best of 5 rounds</p>
-          <p>First to 3 wins takes the match!</p>
+          <p>First to &quot;3 wins&quot; takes the match!</p>
         </motion.div>
       </motion.div>
     </motion.div>

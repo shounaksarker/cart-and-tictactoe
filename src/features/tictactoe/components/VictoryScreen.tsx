@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
-import { resetMatch, startNewMatch } from '@/store/slices/gameSlice';
+import { resetMatch } from '@/store/slices/gameSlice';
 import { updateLeaderboard } from '@/store/slices/leaderboardSlice';
 import { useRouter } from 'next/navigation';
 import { Confetti } from './Confetti';
@@ -64,11 +64,6 @@ export function VictoryScreen() {
   }
   
   const winner = finalWinner ? players[finalWinner] : null;
-  
-  const handleRematch = () => {
-    dispatch(startNewMatch());
-    router.push('/game');
-  };
   
   const handleNewPlayers = () => {
     dispatch(resetMatch());
@@ -163,16 +158,7 @@ export function VictoryScreen() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
             className="flex flex-col sm:flex-row gap-3 justify-center"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleRematch}
-              className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-medium hover:shadow-lg transition-all"
-            >
-              Rematch
-            </motion.button>
-            
+          > 
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

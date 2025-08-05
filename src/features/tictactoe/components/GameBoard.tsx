@@ -65,13 +65,11 @@ export function GameBoard() {
             disabled={!!cell || roundStatus !== 'playing'}
             className={`
               w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center rounded-lg
-              transition-all duration-200
+              transition-all duration-200 border-r-2 border-b-2 border-gray-300
               ${!cell && roundStatus === 'playing' 
                 ? 'bg-gray-50 hover:bg-gray-100 cursor-pointer' 
                 : 'bg-gray-50 cursor-not-allowed'
               }
-              ${index % 3 !== 2 ? 'border-r-2 border-gray-300' : ''}
-              ${index < 6 ? 'border-b-2 border-gray-300' : ''}
             `}
           >
             {getCellContent(cell)}

@@ -50,9 +50,8 @@ export function DeleteConfirmDialog({
                   <X size={20} />
                 </button>
               </div>
-
               <p className="text-gray-600 mb-6">
-                Are you sure you want to delete "{productName}"? This action cannot be undone.
+                Are you sure you want to delete &quot;{productName}&quot;? This action cannot be undone.
               </p>
 
               <div className="flex gap-3">

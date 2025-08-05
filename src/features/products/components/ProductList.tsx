@@ -1,30 +1,37 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Package, Loader2 } from "lucide-react";
-import Link from "next/link";
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Plus, Package, Loader2 } from 'lucide-react';
+import Link from 'next/link';
 
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import {
-  fetchProducts,
-  deleteProduct,
-  setFilters,
-  clearFilters,
-  setPage,
-} from "@/store/slices/productSlice";
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { 
+  fetchProducts, 
+  deleteProduct, 
+  setFilters, 
+  clearFilters, 
+  setPage 
+} from '@/store/slices/productSlice';
 
-import { ProductCard } from "./ProductCard";
-import { ProductFilters } from "./ProductFilters";
-import { ProductSearch } from "./ProductSearch";
-import { ProductPagination } from "./ProductPagination";
-import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
-import { toast } from "sonner";
+import { ProductCard } from './ProductCard';
+import { ProductFilters } from './ProductFilters';
+import { ProductSearch } from './ProductSearch';
+import { ProductPagination } from './ProductPagination';
+import { DeleteConfirmDialog } from './DeleteConfirmDialog';
+import { toast } from 'sonner';
 
 export function ProductList() {
   const dispatch = useAppDispatch();
-  const { products, loading, error, filters, pagination, categories } =
-    useAppSelector((state) => state.products);
+  const { 
+    products, 
+    loading, 
+    error, 
+    filters, 
+    pagination, 
+    categories 
+  } = useAppSelector((state) => state.products);
+    console.log('📛 👉 ~ ProductList ~ loading:', loading);
 
   const [deleteDialog, setDeleteDialog] = useState<{
     isOpen: boolean;
@@ -32,19 +39,17 @@ export function ProductList() {
     productName: string;
   }>({
     isOpen: false,
-    productId: "",
-    productName: "",
+    productId: '',
+    productName: '',
   });
 
   useEffect(() => {
-    dispatch(
-      fetchProducts({
-        page: pagination.page,
-        limit: pagination.limit,
-        filters,
-      })
-    );
-  }, [dispatch, pagination.page, pagination.limit, filters]);
+    dispatch(fetchProducts({
+      page: pagination.page,
+      limit: pagination.limit,
+      filters,
+    }));
+  }, [dispatch, filters]);
 
   const handleSearchChange = (search: string) => {
     dispatch(setFilters({ search }));
@@ -73,24 +78,22 @@ export function ProductList() {
   const handleDeleteConfirm = async () => {
     try {
       await dispatch(deleteProduct(deleteDialog.productId)).unwrap();
-      toast.success("Product deleted successfully");
-      setDeleteDialog({ isOpen: false, productId: "", productName: "" });
-
+      toast.success('Product deleted successfully');
+      setDeleteDialog({ isOpen: false, productId: '', productName: '' });
+      
       // Refresh the current page
-      dispatch(
-        fetchProducts({
-          page: pagination.page,
-          limit: pagination.limit,
-          filters,
-        })
-      );
+      dispatch(fetchProducts({
+        page: pagination.page,
+        limit: pagination.limit,
+        filters,
+      }));
     } catch {
-      toast.error("Failed to delete product");
+      toast.error('Failed to delete product');
     }
   };
 
   const handleDeleteCancel = () => {
-    setDeleteDialog({ isOpen: false, productId: "", productName: "" });
+    setDeleteDialog({ isOpen: false, productId: '', productName: '' });
   };
 
   if (error) {
@@ -107,7 +110,7 @@ export function ProductList() {
   return (
     <div className="min-h-screen">
       {/* Main Content Container */}
-      <div className="lg:max-w-[75%] px-4 lg:px-8">
+              <div className="lg:max-w-[75%] px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -116,7 +119,7 @@ export function ProductList() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                Product Management
+                Product Management loading: {loading} {products.length}
               </h1>
               <p className="text-gray-600">
                 Manage your product inventory with ease
@@ -157,10 +160,7 @@ export function ProductList() {
                 No products found
               </h3>
               <p className="text-gray-600 mb-6">
-                {filters.search ||
-                filters.category ||
-                filters.minPrice ||
-                filters.maxPrice
+                {filters.search || filters.category || filters.minPrice || filters.maxPrice
                   ? "Try adjusting your search criteria"
                   : "Get started by adding your first product"}
               </p>
@@ -184,7 +184,7 @@ export function ProductList() {
                       key={product.id}
                       product={product}
                       onDelete={(id) => {
-                        const product = products.find((p) => p.id === id);
+                        const product = products.find(p => p.id === id);
                         if (product) {
                           handleDeleteClick(id, product.name);
                         }

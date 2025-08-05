@@ -38,7 +38,9 @@ export default function EditProductPage({ params }: EditProductPageProps) {
       toast.success('Product updated successfully!');
       router.push('/products');
     } catch (error) {
-      toast.error('Failed to update product. Please try again.');
+      toast.error('Failed to update product. Please try again.', {
+        description: error instanceof Error ? error.message : 'Unknown error',
+      });
     } finally {
       setSubmitting(false);
     }
@@ -60,7 +62,7 @@ export default function EditProductPage({ params }: EditProductPageProps) {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Product Not Found</h1>
-          <p className="text-gray-600 mb-4">The product you're looking for doesn't exist.</p>
+          <p className="text-gray-600 mb-4">The product you&apos;re looking for doesn&apos;t exist.</p>
           <button
             onClick={() => router.push('/products')}
             className="px-6 py-3 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition-colors"

@@ -20,7 +20,9 @@ export default function CreateProductPage() {
       toast.success('Product created successfully!');
       router.push('/products');
     } catch (error) {
-      toast.error('Failed to create product. Please try again.');
+      toast.error('Failed to create product. Please try again.', {
+        description: error instanceof Error ? error.message : 'Unknown error',
+      });
     } finally {
       setLoading(false);
     }

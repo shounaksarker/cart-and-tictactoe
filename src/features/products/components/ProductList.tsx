@@ -31,7 +31,6 @@ export function ProductList() {
     pagination, 
     categories 
   } = useAppSelector((state) => state.products);
-    console.log('📛 👉 ~ ProductList ~ loading:', loading);
 
   const [deleteDialog, setDeleteDialog] = useState<{
     isOpen: boolean;

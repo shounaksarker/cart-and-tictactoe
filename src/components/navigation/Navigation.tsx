@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 const navItems = [
-  { href: '/', label: 'Tic-Tac-Toe', id: 'tictactoe' },
-  { href: '/products', label: 'Products CRUD', id: 'products' },
+  { href: '/', label: 'Assignment-1', id: 'tictactoe' },
+  { href: '/products', label: 'Assignment-2', id: 'products' },
 ];
 
 export function Navigation() {
@@ -19,9 +19,9 @@ export function Navigation() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-white font-bold text-xl"
+            className="hidden text-white font-bold text-xl lg:block"
           >
-            Assignments Hub
+            Assignment Hub
           </motion.div>
           
           <div className="flex space-x-1">

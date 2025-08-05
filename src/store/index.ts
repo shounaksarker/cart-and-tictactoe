@@ -5,6 +5,7 @@ import { combineReducers } from 'redux';
 
 import gameReducer from './slices/gameSlice';
 import leaderboardReducer from './slices/leaderboardSlice';
+import productReducer from './slices/productSlice';
 
 const leaderboardPersistConfig = {
   key: 'leaderboard',
@@ -14,6 +15,7 @@ const leaderboardPersistConfig = {
 const rootReducer = combineReducers({
   game: gameReducer,
   leaderboard: persistReducer(leaderboardPersistConfig, leaderboardReducer),
+  products: productReducer,
 });
 
 export const store = configureStore({

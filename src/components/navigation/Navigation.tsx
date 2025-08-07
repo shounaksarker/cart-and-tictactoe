@@ -21,7 +21,7 @@ export function Navigation() {
             animate={{ opacity: 1, x: 0 }}
             className="hidden text-white font-bold text-xl lg:block"
           >
-            Assignment Hub
+            Assignment
           </motion.div>
           
           <div className="flex space-x-1">

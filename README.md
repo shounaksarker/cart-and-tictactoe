@@ -1,4 +1,4 @@
-# 🎯 Assignment Hub - Interactive Gaming & Product Management Platform
+# 🎯 Assignment - Interactive Gaming & Product Management Platform
 
 <div align="center">
 
@@ -21,7 +21,7 @@
 
 ## 🌟 Project Overview
 
-**Assignment Hub** is a comprehensive web application that seamlessly integrates two distinct but powerful features:
+**Assignment** is a comprehensive web application that seamlessly integrates two distinct but powerful features:
 
 ### 🎮 **Interactive Tic-Tac-Toe Game**
 - **Player Management**: Custom player name setup with validation
@@ -485,6 +485,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 Made with ❤️ and lots of ☕
 
-[Back to Top ⬆️](#-assignment-hub---interactive-gaming--product-management-platform)
+[Back to Top ⬆️](#-assignment---interactive-gaming--product-management-platform)
 
 </div>
